@@ -5,6 +5,11 @@ This package is still in development.
 
 Use at your own risk!
 
+-- Running tests
+
+```
+meteor test-packages crud-generator
+```
 <!-- How to install
 --------------
 
