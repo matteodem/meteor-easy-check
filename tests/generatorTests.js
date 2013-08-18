@@ -1,7 +1,8 @@
 var collection = new Meteor.Collection(null),
     schema = {
         'id' : 'number:4',
-        'name' : 'string:64'
+        'name' : 'string:64',
+        'created' : 'date:-1'
     },
     options = {},
     crud = new Meteor.CRUDGenerator(collection, schema, options);
@@ -58,11 +59,13 @@ Tinytest.add('CrudGenerator - Test changeValueType', function (test) {
 });
 
 Tinytest.add('CrudGenerator - Test validCRUDObject', function (test) {
+    var createdAt = new Date();
     test.isTrue(
         crud.validCRUDObject(
             {
                 'id' : 2,
-                'name' : 'A valid name, less than 64 characters (as defined in the schema)'
+                'name' : 'A valid name, less than 64 characters (as defined in the schema)',
+                'created' : createdAt
             },
             schema
         ), 'Shouldn\'t have any problems validating the provided object'
@@ -71,7 +74,8 @@ Tinytest.add('CrudGenerator - Test validCRUDObject', function (test) {
     test.throws(function () {
             var response = crud.validCRUDObject({
                 'id' : '2',
-                'name' : 'A valid name'
+                'name' : 'A valid name',
+                'created' : createdAt
             }, schema);
         }, Meteor.Error, 'Should throw an error because the id isn\'t a number'
     );
@@ -86,9 +90,19 @@ Tinytest.add('CrudGenerator - Test validCRUDObject', function (test) {
     test.throws(function () {
             var response = crud.validCRUDObject({
                 'id' : 2,
-                'name' : 10
+                'name' : 10,
+                'created' : createdAt
             }, schema);
         }, Meteor.Error, 'Should throw an error because the name isn\'t a string'
+    );
+    
+    test.throws(function () {
+            var response = crud.validCRUDObject({
+                'id' : 2,
+                'name' : 'A valid name',
+                'created' : true
+            }, schema);
+        }, Meteor.Error, 'Should throw an error because the created isn\'t a date'
     );
 
     test.throws(function () {
