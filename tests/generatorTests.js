@@ -14,8 +14,11 @@ Tinytest.add('CrudGenerator - MarkupGenerator - Constructor', function (test) {
 
     test.equal(
         markupGenerator.options,
-        {},
-        'Should be an empty object since no options for the markup generator were passed'
+        {
+            'additionalTableClasses' : '',
+            'tableClass' : ''
+        },
+        'Should have initialized a standard object since no options for the markup generator were passed'
     );
 });
 
