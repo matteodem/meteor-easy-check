@@ -3,9 +3,7 @@ meteor-crud-generator
 
 This package is still in development.
 
-Use at your own risk!
-
--- Running tests
+-- Running tinytest tests
 
 ```
 meteor test-packages crud-generator

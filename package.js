@@ -7,11 +7,6 @@ Package.on_use(function (api) {
     api.use('underscore', 'client');
 
     api.add_files([
-        'lib/css/purecss-form.css'
-    ], 'client'
-    );
-    
-    api.add_files([
         'lib/crud-generator.js'
     ], ['client', 'server']
     );
@@ -22,7 +17,7 @@ Package.on_test(function (api) {
         ['crud-generator', 'tinytest', 'test-helpers']
     );
     api.add_files(
-        'tests/generatorTests.js', 
+        'tests/generatorTests.js',
         ['client', 'server']
     );
 });
