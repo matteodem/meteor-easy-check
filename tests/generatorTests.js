@@ -100,7 +100,7 @@ Tinytest.add('CrudGenerator - Test validCRUDObject', function (test) {
             }, schema);
         }, Meteor.Error, 'Should throw an error because the name isn\'t a string'
     );
-    
+
     test.throws(function () {
             var response = crud.validCRUDObject({
                 'id' : 2,
