@@ -7,8 +7,8 @@ Package.on_use(function (api) {
     api.use('underscore', 'client');
 
     api.add_files([
-        'lib/css/bootstrap_form.css',
-        'lib/css/purecss_form.css'
+        'lib/css/bootstrap.css',
+        'lib/css/pure-min.css'
     ], 'client');
 
     api.add_files([
