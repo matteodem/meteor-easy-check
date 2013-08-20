@@ -16,8 +16,9 @@ if (Meteor.isClient) {
         test.equal(
             markupGenerator.options,
             {
-                'additionalTableClasses' : '',
-                'tableClass' : ''
+                'formClass' : '',
+                'tableClass' : '',
+                'additionalTableClasses' : ''
             },
             'Should have initialized a standard object since no options for the markup generator were passed'
         );
