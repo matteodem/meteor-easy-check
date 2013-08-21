@@ -18,6 +18,7 @@ if (Meteor.isClient) {
             {
                 'formClass' : '',
                 'tableClass' : '',
+                'additionalFormClasses' : '',
                 'additionalTableClasses' : ''
             },
             'Should have initialized a standard object since no options for the markup generator were passed'
