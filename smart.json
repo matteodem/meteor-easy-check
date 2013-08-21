@@ -3,6 +3,6 @@
   "description": "CRUD generator package for meteor",
   "homepage": "https://github.com/matteodem/meteor-crud-generator",
   "author": "Matteo De Micheli",
-  "version": "0.5",
+  "version": "0.8",
   "git": "https://github.com/matteodem/meteor-crud-generator.git"
 }
