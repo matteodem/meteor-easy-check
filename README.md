@@ -7,6 +7,10 @@ This package provides
 * Creates the markup (a table) for a specified schema
 * Handles all CRUD Events with a specific Meteor Template
 
+```
+mrt add crud-generator
+```
+
 ## How to use
 
 This is how a basic setup looks like:
