@@ -27,13 +27,17 @@ crud = new Meteor.CRUDGenerator(
 	}
 );
 ```
-
 This will create a specific template called "test_crud" (with handled CRUD Events). 
 
 It's also recommended to disable the insecure package and give no right to insert, update or remove at all (since there are safe, self-validating Meteor.methods for all the database actions).
 
+## Where to use
 
-### Advanced configuration
+This package can be used for example in an admin configuration area (together with the "managedUsers" package), where you want to have a selected range of users being able to change the documents for a collection. 
+
+Of course you can also use certain parts of the package, such as the generated CRUD Meteor.methods.
+
+## Advanced configuration
 
 This package exposes a global variable called ```Meteor.CRUDGenerator```. The parameters are
 
