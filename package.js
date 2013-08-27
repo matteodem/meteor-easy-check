@@ -23,7 +23,11 @@ Package.on_test(function (api) {
         ['crud-generator', 'tinytest', 'test-helpers']
     );
     api.add_files(
-        'tests/generatorTests.js',
+        'tests/generator-test-client.js',
+        'client'
+    );
+    api.add_files(
+        'tests/generator-test-both.js',
         ['client', 'server']
     );
 });

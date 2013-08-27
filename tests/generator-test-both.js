@@ -1,53 +1,14 @@
-var collection = new Meteor.Collection(null),
-    schema = {
-        'id' : 'number:4',
-        'name' : 'string:64',
-        'created' : 'date:-1'
-    },
-    options = {},
-    crud = new Meteor.CRUDGenerator(collection, schema, options);
+collection = new Meteor.Collection(null),
+schema = {
+    'id' : 'number:4',
+    'name' : 'string:64',
+    'created' : 'date:-1',
+    'notRequired' : '_string:10'
+},
+options = {},
+crud = new Meteor.CRUDGenerator(collection, schema, options);
 
 // @see https://www.eventedmind.com/posts/meteor-testing-packages-with-tinytest
-
-if (Meteor.isClient) {
-    Tinytest.add('CrudGenerator - MarkupGenerator - Constructor', function (test) {
-        var markupGenerator = crud.markupGenerator;
-
-        test.equal(
-            markupGenerator.options,
-            {
-                'formClass' : '',
-                'tableClass' : '',
-                'additionalFormClasses' : '',
-                'additionalTableClasses' : ''
-            },
-            'Should have initialized a standard object since no options for the markup generator were passed'
-        );
-    });
-
-    Tinytest.add('CrudGenerator - MarkupGenerator - Test escapeHtml', function (test) {
-        var markupGenerator = crud.markupGenerator;
-
-        test.equal(
-            markupGenerator.escapeHtml(''),
-            '',
-            'Shouldn\'t do anything with an empty string'
-        );
-
-        test.equal(
-            markupGenerator.escapeHtml('<input type="textfield">'),
-            '&lt;input type=&quot;textfield&quot;&gt;',
-            'Should escape the html string properly'
-        );
-
-        test.equal(
-            markupGenerator.escapeHtml('/\'"/'),
-            '&#x2F;&#39;&quot;&#x2F;',
-            'Should escape the html string properly'
-        );
-    });
-}
-
 Tinytest.add('CrudGenerator - Constructor', function (test) {
     test.throws(function () {
             new Meteor.CRUDGenerator(null, null)
@@ -67,6 +28,21 @@ Tinytest.add('CrudGenerator - Test changeValueType', function (test) {
 
 Tinytest.add('CrudGenerator - Test validCRUDObject', function (test) {
     var createdAt = new Date();
+
+
+    test.isTrue(
+        crud.validCRUDObject(
+            {
+                'id' : 2,
+                'name' : 'A valid name, less than 64 characters (as defined in the schema)',
+                'notRequired' : 'asdfga',
+                'created' : createdAt
+            },
+            schema
+        ), 'Shouldn\'t have any problems validating the provided object'
+    );
+
+    // Since the notRequired isn't required
     test.isTrue(
         crud.validCRUDObject(
             {
@@ -75,7 +51,7 @@ Tinytest.add('CrudGenerator - Test validCRUDObject', function (test) {
                 'created' : createdAt
             },
             schema
-        ), 'Shouldn\'t have any problems validating the provided object'
+        ), 'Shouldn\'t have any problems validating the provided object, since the field "notRequired isnt required'
     );
 
     test.throws(function () {
