@@ -26,6 +26,26 @@ Tinytest.add('CrudGenerator - Test changeValueType', function (test) {
     test.equal(crud.changeValueType('1.12.2012', 'date'), new Date('1.12.2012'), 'Should convert to a javascript Date Object');
 });
 
+Tinytest.add('CrudGenerator - Test getRequiredFields', function (test) {
+    var secondSchema = {
+        'id' : '_number:4',
+        'name' : '_string:2'
+    };
+    test.equal(crud.getRequiredFields(schema), {
+        'id' : 'number:4',
+        'name' : 'string:64',
+        'created' : 'date:-1'
+    });
+
+    test.equal(crud.getRequiredFields(secondSchema), {});
+    test.equal(crud.getRequiredFields({}), {});
+});
+
+Tinytest.add('CrudGenerator - Test isDefinitionRequired', function (test) {
+    test.equal(crud.isDefinitionRequired('_number'), false);
+    test.equal(crud.isDefinitionRequired('string'), true);
+});
+
 Tinytest.add('CrudGenerator - Test validCRUDObject', function (test) {
     var createdAt = new Date();
 
