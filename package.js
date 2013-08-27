@@ -8,11 +8,12 @@ Package.on_use(function (api) {
 
     api.add_files([
         'lib/css/bootstrap.min.css',
-        'lib/css/pure-min.css'
+        'lib/css/pure-min.css',
+        'lib/crud-generator-client.js'
     ], 'client');
 
     api.add_files([
-        'lib/crud-generator.js'
+        'lib/crud-generator-both.js'
     ], ['client', 'server']
     );
 });
