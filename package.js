@@ -9,7 +9,9 @@ Package.on_use(function (api) {
     api.add_files([
         'lib/css/bootstrap.min.css',
         'lib/css/pure-min.css',
-        'lib/crud-generator-client.js'
+        'lib/crud-generator-client.js',
+        'lib/datetimepicker/dtpicker.min.css',
+        'lib/datetimepicker/dtpicker.min.js'
     ], 'client');
 
     api.add_files([
