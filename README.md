@@ -65,6 +65,7 @@ Meteor.CRUDGenerator(collection, schema, options);
 		* 'additionalFormClasses' and 'additionalTableClasses' for user defined classes
 	* 'errorCallback' function which is executed when there's a Meteor.Error
 		* e.g for visual feedback on the site
+	* 'anonymousEditable' boolean which tells if anonymous (not logged in users) can execute CRUD operations
 
 
 
