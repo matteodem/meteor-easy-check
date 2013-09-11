@@ -1,5 +1,5 @@
 Package.describe({
-    summary : "CRUD Generator package for meteor"
+    summary : "Generate markup / safe-to-use Meteor.methods based on a schema"
 });
 
 Package.on_use(function (api) {
