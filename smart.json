@@ -3,6 +3,6 @@
   "description": "Generate markup / safe-to-use Meteor.methods based on a schema",
   "homepage": "https://github.com/matteodem/meteor-crud-generator",
   "author": "Matteo De Micheli",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "git": "https://github.com/matteodem/meteor-crud-generator.git"
 }
