@@ -17,12 +17,11 @@ var PersonChecker = new EasyCheck({
 });
 
 PersonChecker.check({ name :  'Peter' }); // returns true
-PersonChecker.check({ something : 'random' }); // return false
+PersonChecker.check({ something : 'random' }); // returns false
 
 ```
 
-You could use that and create secure Meteor.methods with it… 
-or just **add your Meteor.Collection as the 2nd parameter** which does that for you:
+You could use that and create secure Meteor.methods with it… or just **add your Meteor.Collection as the 2nd parameter** which does that for you:
 
 ```
 var CarsChecker = new EasyCheck({
@@ -35,7 +34,7 @@ var CarsChecker = new EasyCheck({
 	'isNew' : 'boolean
 }, CarsCollection); // CarsCollection is an instance of Meteor.Collection
 
-// You now got following methods on your colleciton, with validation
+// You now got following methods on your collection, with validation
 CarsCollection.easyInsert(doc, [callback]);
 CarsCollection.easyUpdate(selector, modifier, [options], [callback]);
 CarsCollection.easyRemove(selector, [callback]);
