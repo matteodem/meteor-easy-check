@@ -21,7 +21,8 @@ PersonChecker.check({ something : 'random' }); // return false
 
 ```
 
-You could use that and create secure Meteor.methods with it… or just **add your Meteor.Collection as the 2nd parameter** which does that for you:
+You could use that and create secure Meteor.methods with it… 
+or just **add your Meteor.Collection as the 2nd parameter** which does that for you:
 
 ```
 var CarsChecker = new EasyCheck({
