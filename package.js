@@ -1,37 +1,24 @@
 Package.describe({
-    summary : "Generate markup / safe-to-use Meteor.methods based on a schema"
+    summary : "Easy way to validate objects for a Meteor.Collection"
 });
 
 Package.on_use(function (api) {
-    api.use('jquery', 'client');
-    api.use('underscore', 'client');
-    api.use('jquery', 'server');
-    api.use('underscore', 'server');
+    api.use('underscore');
 
     api.add_files([
-        'lib/css/bootstrap.min.css',
-        'lib/css/pure-min.css',
-        'lib/crud-generator-client.js',
-        'lib/datetimepicker/dtpicker.min.css',
-        'lib/datetimepicker/dtpicker.min.js'
-    ], 'client');
-
-    api.add_files([
-        'lib/crud-generator-both.js'
+        'lib/easy-check.js'
     ], ['client', 'server']
     );
+
+    api.export('EasyCheck');
 });
 
 Package.on_test(function (api) {
     api.use(
-        ['crud-generator', 'tinytest', 'test-helpers']
+        ['easy-check', 'tinytest', 'test-helpers']
     );
     api.add_files(
-        'tests/generator-test-client.js',
-        'client'
-    );
-    api.add_files(
-        'tests/generator-test-both.js',
+        'tests/easy-check-tests.js',
         ['client', 'server']
     );
 });

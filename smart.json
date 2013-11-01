@@ -1,8 +1,8 @@
 {
-  "name": "crud-generator",
-  "description": "Generate markup / safe-to-use Meteor.methods based on a schema",
-  "homepage": "https://github.com/matteodem/meteor-crud-generator",
+  "name": "easy-check",
+  "description": "Easy way to validate objects for a Meteor.Collection",
+  "homepage": "https://github.com/matteodem/meteor-easy-check",
   "author": "Matteo De Micheli",
-  "version": "0.8.7",
-  "git": "https://github.com/matteodem/meteor-crud-generator.git"
+  "version": "0.2.1",
+  "git": "https://github.com/matteodem/meteor-easy-check.git"
 }
