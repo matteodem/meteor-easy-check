@@ -8,6 +8,7 @@ if (Meteor.isClient) {
 } else if (Meteor.isServer) {
     // Clear up collection
     testCollection.remove({ });
+    anotherCollection.remove({ });
 
     Meteor.publish('cars', function () {
         return testCollection.find();
@@ -213,4 +214,24 @@ Tinytest.add('EasyCheck - Constructor - onInsert / onUpdate and so on', function
     test.equal(firstDoc.name, anotherCollection.findOne(firstDoc).name);
     test.isUndefined(anotherCollection.easyRemove(anotherCollection.findOne(firstDoc)._id));
     test.isUndefined(anotherCollection.findOne(firstDoc));
+});
+
+Tinytest.add('EasyCheck - Factory - addType', function (test) {
+    var simpleCheck = new EasyCheck(
+            {
+                'name' : 'string',
+                'address' : 'string:255:false'
+            }
+        ),
+        typeObj = {
+            'check' : function (value) {
+                return true;
+            }
+        };
+
+    test.isTrue("object" === typeof simpleCheck.factory.types);
+    simpleCheck.factory.addType('another type', typeObj);
+    test.equal(typeObj, simpleCheck.factory.types["another type"]);
+    simpleCheck.factory.addType("illegal type", false);
+    test.isUndefined(simpleCheck.factory.types["illegal type"]);
 });
