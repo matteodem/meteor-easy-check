@@ -31,7 +31,7 @@ var CarsChecker = new EasyCheck({
 		maxLength : 255,
 		required : false
 	}
-	'isNew' : 'boolean
+	'isNew' : 'boolean'
 }, CarsCollection); // CarsCollection is an instance of Meteor.Collection
 
 // You now got following methods on your collection, with validation
