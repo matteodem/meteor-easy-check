@@ -25,12 +25,12 @@ You could use that and create secure Meteor.methods with it… or just add your 
 
 ```
 var CarsChecker = new EasyCheck({
-	'company' : 'string' 
+	'company' : 'string',
 	'model' : {
 		type : 'string',
 		maxLength : 255,
 		required : false
-	}
+	},
 	'isNew' : 'boolean'
 }, CarsCollection); // CarsCollection is an instance of Meteor.Collection
 
