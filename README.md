@@ -70,4 +70,20 @@ There's quite some options to specify the values you want to check against
 * 'date'
 * instanceof EasyCheck
 
+## Options
 
+You can also add an options object as a third parameter, for example:
+```
+new EasyCheck(schema, collection, options);
+```
+
+Possible options are:
+```
+{
+    onInsert : function (document),  # act on an insert
+    onUpdate : function (selector, modifier, options) # act on an update
+    onCheckUpdatedDoc : function (document) # act on a document that has been updated, if false then it reverts the update
+    onRemove : function (id) # act on a remove
+    onError  : function (errors) # act when there were errors when checking a document
+}
+```

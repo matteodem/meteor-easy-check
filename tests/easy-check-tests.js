@@ -64,6 +64,16 @@ Tinytest.add('EasyCheck - check - checkLayers', function (test) {
         { 'player' : { 'name' : 'peter' }, 'level' : 100, 'isOnline' : true, 'parentPlayer' : { 'name' : 'peterPeter' } }
     ));
 
+    test.isTrue(layeredCheck.check(
+        { 'player' : { 'name' : 'peter' }, 'level' : 100, 'isOnline' : true, 'parentPlayer' : { 'name' : 'peterFather' } }
+    ));
+
+    layeredCheck.check(
+        { 'player' : { 'name' : true }, 'level' : 100, 'isOnline' : true, 'parentPlayer' : { 'name' : 'peterPeter' } }
+    );
+    test.isFalse(layeredCheck.check(
+        { 'player' : { 'name' : true }, 'level' : 100, 'isOnline' : true, 'parentPlayer' : { 'name' : 'peterPeter' } }
+    ));
     test.isFalse(layeredCheck.check({ 'player' : { 'name' : 10.00 }, 'level' : 100, 'isOnline' : true }));
     test.isFalse(layeredCheck.check({ 'player' : { 'name' : 'peter', 'addi' : 'tional' }, 'level' : 100, 'isOnline' : true }));
 });
