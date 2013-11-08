@@ -70,16 +70,32 @@ Tinytest.add('EasyCheck - check - checkLayers', function (test) {
 
 Tinytest.add('EasyCheck - check - checkRegex', function (test) {
     var regexCheck = new EasyCheck(
-            {
-                'onlyBuchstaben' : {
-                    type : 'string',
-                    regex : /[a-z]+/i
-                }
+        {
+            'onlyBuchstaben' : {
+                type : 'string',
+                regex : /[a-z]+/i
             }
-        );
+        }
+    );
 
     test.isTrue(regexCheck.check({ 'onlyBuchstaben' : 'testString@' }));
     test.isFalse(regexCheck.check({ 'foo' : 'bar '}));
+});
+
+Tinytest.add('EasyCheck - check - minLength', function (test) {
+    var minLengthCheck = new EasyCheck(
+        {
+            'name' : {
+                type : 'string',
+                minLength : 10
+            }
+        }
+    );
+
+    test.isTrue(minLengthCheck.check({ 'name' : 'testString' }));
+    test.isTrue(minLengthCheck.check({ 'name' : '              ' }));
+    test.isFalse(minLengthCheck.check({ 'name' : 'bar '}));
+    test.isFalse(minLengthCheck.check({ 'name' : ' '}));
 });
 
 Tinytest.add('EasyCheck - Helpers - getFieldConfig', function (test) {
