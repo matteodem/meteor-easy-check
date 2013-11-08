@@ -47,7 +47,7 @@ mrt add easy-check
 ```
 
 
-## All possible configurations to a field
+## Possible configurations to a field
 There's quite some options to specify the values you want to check against
 
 ```
@@ -61,7 +61,7 @@ There's quite some options to specify the values you want to check against
 ```
 
 
-### All types
+### Field types
 
 * 'string'
 * 'booolean'
@@ -77,7 +77,7 @@ You can also add an options object as a third parameter, for example:
 new EasyCheck(schema, collection, options);
 ```
 
-Possible options are:
+Following options can be configured:
 ```
 {
     onInsert : function (document),  # act on an insert
