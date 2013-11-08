@@ -41,11 +41,33 @@ CarsCollection.easyRemove(selector, [callback]);
 
 ```
 
-
-
 ## How to install
 ```
 mrt add easy-check
 ```
 
-More documentation to come
+
+## All possible configurations to a field
+There's quite some options to specify the values you want to check against
+
+```
+{
+    type : 'string',    # the type, such as boolean, number...
+    required : false,   # is the field is required
+    maxLength : 255     # the maximum length
+    minLength : 10      # the minimum length
+    regex: /[\w]+/      # a regex pattern to test() against
+}
+```
+
+
+### All types
+
+* 'string'
+* 'booolean'
+* 'array'
+* 'object'
+* 'date'
+* instanceof EasyCheck
+
+
