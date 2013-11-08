@@ -49,6 +49,39 @@ Tinytest.add('EasyCheck - check', function (test) {
     test.isFalse(easyCheck.check({ 'name' : 'hello', 'additional' : true, 'a' : 'b' }));
 });
 
+Tinytest.add('EasyCheck - check - checkLayers', function (test) {
+    var playerCheck = new EasyCheck({ 'name' : 'string' }),
+        layeredCheck = new EasyCheck(
+            {
+                'player' : { type : playerCheck },
+                'parentPlayer' : playerCheck,
+                'level' : 'number',
+                'isOnline' : 'boolean'
+            }
+        );
+
+    test.isTrue(layeredCheck.check(
+        { 'player' : { 'name' : 'peter' }, 'level' : 100, 'isOnline' : true, 'parentPlayer' : { 'name' : 'peterPeter' } }
+    ));
+
+    test.isFalse(layeredCheck.check({ 'player' : { 'name' : 10.00 }, 'level' : 100, 'isOnline' : true }));
+    test.isFalse(layeredCheck.check({ 'player' : { 'name' : 'peter', 'addi' : 'tional' }, 'level' : 100, 'isOnline' : true }));
+});
+
+Tinytest.add('EasyCheck - check - checkRegex', function (test) {
+    var regexCheck = new EasyCheck(
+            {
+                'onlyBuchstaben' : {
+                    type : 'string',
+                    regex : /[a-z]+/i
+                }
+            }
+        );
+
+    test.isTrue(regexCheck.check({ 'onlyBuchstaben' : 'testString@' }));
+    test.isFalse(regexCheck.check({ 'foo' : 'bar '}));
+});
+
 Tinytest.add('EasyCheck - Helpers - getFieldConfig', function (test) {
     var fieldConfigCheck = new EasyCheck(
         {
