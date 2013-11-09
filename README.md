@@ -57,6 +57,7 @@ There's quite some options to specify the values you want to check against
     maxLength : 255     # the maximum length
     minLength : 10      # the minimum length
     regex: /[\w]+/      # a regex pattern to test() against
+    contains : %type%   # only if array, can specify what type of values it contains
 }
 ```
 

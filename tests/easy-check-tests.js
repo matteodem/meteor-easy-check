@@ -108,6 +108,35 @@ Tinytest.add('EasyCheck - check - minLength', function (test) {
     test.isFalse(minLengthCheck.check({ 'name' : ' '}));
 });
 
+Tinytest.add('EasyCheck - check - contains', function (test) {
+    var minLengthCheck = new EasyCheck(
+        {
+            'names' : {
+                type : 'array',
+                minLength : 2,
+                maxLength : 4,
+                contains : 'string'
+            },
+            'bools' : {
+                type : 'array',
+                required : false,
+                contains : 'boolean'
+            },
+            'inValid' : {
+                type : 'string',
+                required : false,
+                contains : 'string'
+            }
+        }
+    );
+
+    test.isTrue(minLengthCheck.check({ 'names' : ['Hans', 'Jürg', 'Urs'] }));
+    test.isTrue(minLengthCheck.check({ 'names' : ['Urs', 'Jürg'], 'bools' : [true, false, true] }));
+    test.isFalse(minLengthCheck.check({ 'names' : ['Urs'] }));
+    test.isFalse(minLengthCheck.check({ 'names' : ['Urs', 'Jürg'], 'inValid' : ['hello', 'hey'] }));
+    test.isFalse(minLengthCheck.check({ 'names' : ['Urs', 'Jürg'], 'bools' : [true, false, 'wrong'] }));
+});
+
 Tinytest.add('EasyCheck - Helpers - getFieldConfig', function (test) {
     var fieldConfigCheck = new EasyCheck(
         {
