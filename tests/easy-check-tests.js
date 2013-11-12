@@ -10,6 +10,18 @@ if (Meteor.isClient) {
     testCollection.remove({ });
     anotherCollection.remove({ });
 
+    anotherCollection.allow({
+        'insert' : function () {
+            return true;
+        },
+        'update' : function () {
+            return true;
+        },
+        'remove' : function () {
+            return true;
+        }
+    });
+
     Meteor.publish('cars', function () {
         return testCollection.find();
     });
@@ -47,6 +59,66 @@ Tinytest.add('EasyCheck - check', function (test) {
     test.isFalse(easyCheck.check({ 'name' : 10.012 }));
     // Too many properties
     test.isFalse(easyCheck.check({ 'name' : 'hello', 'additional' : true, 'a' : 'b' }));
+});
+
+Tinytest.add('EasyCheck - check - references', function (test) {
+    var id,
+        referencedCheck = new EasyCheck(
+            {
+                'player' : 'string',
+                'foreignId' : {
+                    type : 'string',
+                    references : {
+                        'collection' : anotherCollection
+                    }
+                },
+                'numberProperty' : {
+                    type : 'number',
+                    references : {
+                        'collection' : anotherCollection,
+                        'field' : 'someNumber'
+                    },
+                    required : false
+                },
+                'car' : {
+                    type : 'array',
+                    references : {
+                        'collection' : anotherCollection,
+                        'field' : 'name'
+                    }
+                }
+            }
+        );
+
+    id = anotherCollection.insert({ 'name' : 'this is a test', 'someNumber' : 100 });
+
+    test.isTrue(referencedCheck.check({
+        'player' : 'hello',
+        'foreignId' : id,
+        'numberProperty' : 100,
+        'car' : ['this is a test']
+    }));
+
+    test.isFalse(referencedCheck.check({
+        'player' : 'hello',
+        'foreignId' : id,
+        'numberProperty' : 101,
+        'car' : ['this is a test']
+    }));
+
+    test.isFalse(referencedCheck.check({
+        'player' : 'hello',
+        'foreignId' : id,
+        'car' : ['this is a test', false]
+    }));
+
+    test.isFalse(referencedCheck.check({
+        'player' : 'hello',
+        'foreignId' : 'justSomething',
+        'car' : ['this doesnt exist']
+    }));
+
+    anotherCollection.remove(id);
 });
 
 Tinytest.add('EasyCheck - check - checkLayers', function (test) {
