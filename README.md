@@ -26,6 +26,7 @@ PersonChecker.check({ something : 'random' }); // returns false
 * Use predefined self-validating insert, update and remove functions
 * Simple to create references beetween collections
 * Possibility to add custom types
+* Hook into all CRUD Operations + when there are Errors
 
 You could use that and create secure Meteor.methods with it… or just add your Meteor.Collection as the 2nd parameter:
 
@@ -93,7 +94,7 @@ Following options can be configured:
 {
     onInsert : function (document),  # act on an insert
     onUpdate : function (selector, modifier, options) # act on an update
-    onCheckUpdatedDoc : function (document) # act on a document that has been updated, if false then it reverts the update
+    onCheckUpdatedDoc : function (document) # act on updated docs, return false = revert
     onRemove : function (id) # act on a remove
     onError  : function (errors) # act when there were errors when checking a document
 }
