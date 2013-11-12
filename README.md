@@ -21,6 +21,12 @@ PersonChecker.check({ something : 'random' }); // returns false
 
 ```
 
+## Features
+
+* Use predefined self-validating insert, update and remove functions
+* Simple to create references beetween collections
+* Possibility to add custom types
+
 You could use that and create secure Meteor.methods with it… or just add your Meteor.Collection as the 2nd parameter:
 
 ```
