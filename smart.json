@@ -3,6 +3,6 @@
   "description": "Easy way to validate objects for a Meteor.Collection",
   "homepage": "https://github.com/matteodem/meteor-easy-check",
   "author": "Matteo De Micheli",
-  "version": "0.2.6",
+  "version": "0.2.8",
   "git": "https://github.com/matteodem/meteor-easy-check.git"
 }
