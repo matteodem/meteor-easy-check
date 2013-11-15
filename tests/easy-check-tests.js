@@ -51,6 +51,8 @@ Tinytest.add('EasyCheck - check', function (test) {
 
     // Empty
     test.isFalse(easyCheck.check({}));
+    // Same amount of required values but not the right property
+    test.isFalse(easyCheck.check({ 'additional' : true }));
     // Same amount of properties but not valid names
     test.isFalse(easyCheck.check({ 'name' : 'hello', 'additionalNotHere' : true }));
     // Same amount of properties but not valid types
