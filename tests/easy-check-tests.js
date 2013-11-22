@@ -61,6 +61,8 @@ Tinytest.add('EasyCheck - check', function (test) {
     test.isFalse(easyCheck.check({ 'name' : 10.012 }));
     // Too many properties
     test.isFalse(easyCheck.check({ 'name' : 'hello', 'additional' : true, 'a' : 'b' }));
+    // Everything right, but empty
+    test.isFalse(easyCheck.check({ 'name' : '' }));
 });
 
 Tinytest.add('EasyCheck - check - references', function (test) {
@@ -162,7 +164,7 @@ Tinytest.add('EasyCheck - check - checkRegex', function (test) {
         }
     );
 
-    test.isTrue(regexCheck.check({ 'onlyBuchstaben' : 'testString@' }));
+    test.isTrue(regexCheck.check({ 'onlyBuchstaben' : 'testString' }));
     test.isFalse(regexCheck.check({ 'foo' : 'bar '}));
 });
 
