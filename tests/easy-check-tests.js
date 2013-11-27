@@ -156,16 +156,28 @@ Tinytest.add('EasyCheck - check - checkLayers', function (test) {
 
 Tinytest.add('EasyCheck - check - checkRegex', function (test) {
     var regexCheck = new EasyCheck(
+            {
+                'onlyBuchstaben' : {
+                    type : 'string',
+                    regex : /[a-z]+/i
+                }
+            }
+        ), mailCheck = new EasyCheck(
         {
-            'onlyBuchstaben' : {
+            'mail' : {
                 type : 'string',
-                regex : /[a-z]+/i
+                regex : /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
             }
         }
     );
 
     test.isTrue(regexCheck.check({ 'onlyBuchstaben' : 'testString' }));
     test.isFalse(regexCheck.check({ 'foo' : 'bar '}));
+    test.isFalse(regexCheck.check({ 'onlyBuchstaben' : 'testString!12' }));
+
+    test.isTrue(mailCheck.check({ 'mail' : 'hello@hello.com' }));
+    test.isFalse(mailCheck.check({ 'mail' : 'hello.com' }));
+    test.isFalse(mailCheck.check({ 'mail' : 'hello@a' }));
 });
 
 Tinytest.add('EasyCheck - check - minLength', function (test) {
@@ -346,6 +358,11 @@ Tinytest.add('EasyCheck - with Collection in Constructor', function (test) {
 
     test.equal(firstDoc.name, testCollection.findOne(firstDoc).name);
     test.equal(secondDoc.name, testCollection.findOne(secondDoc).name);
+
+    testCollection.easyUpdate(testCollection.findOne(firstDoc), { 'name' : 'helloNew' });
+
+    test.equal('helloNew', testCollection.findOne({ 'name' : "helloNew" }).name);
+    testCollection.easyUpdate(testCollection.findOne({ 'name' : "helloNew" }), firstDoc);
 
     testCollection.easyRemove(testCollection.findOne(firstDoc)._id);
     testCollection.easyRemove(testCollection.findOne(secondDoc)._id);
