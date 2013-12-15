@@ -28,7 +28,7 @@ PersonChecker.check({ something : 'random' }); // returns false
 * Possibility to add custom types
 * Hook into all CRUD Operations + when there are Errors
 
-You could use that and create secure Meteor.methods with it… or just add your Meteor.Collection as the 2nd parameter:
+You could use the above example and create secure Meteor.methods with it… or just add your Meteor.Collection as the 2nd parameter:
 
 ```javascript
 var CarsChecker = new EasyCheck({
@@ -92,10 +92,10 @@ new EasyCheck(schema, collection, options);
 Following options can be configured:
 ```javascript
 {
-    onInsert : function (document),  # act on an insert
-    onUpdate : function (selector, modifier, options) # act on an update
-    onCheckUpdatedDoc : function (document) # act on updated docs, return false = revert
-    onRemove : function (id) # act on a remove
-    onError  : function (errors) # act when there were errors when checking a document
+    onInsert : function (document),  // act on an insert
+    onUpdate : function (selector, modifier, options) // act on an update
+    onCheckUpdatedDoc : function (document) // act on updated docs, return false = revert
+    onRemove : function (id) // act on a remove
+    onError  : function (errors) // act when there were errors when checking a document
 }
 ```
