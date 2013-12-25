@@ -7,7 +7,7 @@ This package makes it as simple as possible to check objects, e.g. for a Meteor.
 
 Create a checker like that:
 
-```
+```javascript
 var PersonChecker = new EasyCheck({
 	'name' : 'string',
 	'hasCar' : {
@@ -28,9 +28,9 @@ PersonChecker.check({ something : 'random' }); // returns false
 * Possibility to add custom types
 * Hook into all CRUD Operations + when there are Errors
 
-You could use that and create secure Meteor.methods with it… or just add your Meteor.Collection as the 2nd parameter:
+You could use the above example and create secure Meteor.methods with it… or just add your Meteor.Collection as the 2nd parameter:
 
-```
+```javascript
 var CarsChecker = new EasyCheck({
 	'company' : 'string',
 	'model' : {
@@ -57,17 +57,17 @@ mrt add easy-check
 ## Possible configurations to a field
 There's quite some options to specify the values you want to check against
 
-```
+```javascript
 {
-    type : 'array',             # the type, such as string, number...
-    required : false,           # is the field is required
-    maxLength : 255,            # the maximum length
-    minLength : 10,             # the minimum length
-    regex: /[\w]+/,             # a regex pattern to test() against
-    contains : %type%,          # only if array, can specify what type of values it contains
-    references : {              # reference a collection, by a field in it
-        'collection' : cars,    # collection which it references
-        'fields' : '_id'        # The field which it references, default _id
+    type : 'array',             // the type, such as string, number...
+    required : false,           // is the field is required
+    maxLength : 255,            // the maximum length
+    minLength : 10,             // the minimum length
+    regex: /[\w]+/,             // a regex pattern to test() against
+    contains : %type%,          // only if array, can specify what type of values it contains
+    references : {              // reference a collection, by a field in it
+        'collection' : cars,    // collection which it references
+        'fields' : '_id'        // The field which it references, default _id
     }
 }
 ```
@@ -85,17 +85,17 @@ There's quite some options to specify the values you want to check against
 ## Options
 
 You can also add an options object as a third parameter, for example:
-```
+```javascript
 new EasyCheck(schema, collection, options);
 ```
 
 Following options can be configured:
-```
+```javascript
 {
-    onInsert : function (document),  # act on an insert
-    onUpdate : function (selector, modifier, options) # act on an update
-    onCheckUpdatedDoc : function (document) # act on updated docs, return false = revert
-    onRemove : function (id) # act on a remove
-    onError  : function (errors) # act when there were errors when checking a document
+    onInsert : function (document),  // act on an insert
+    onUpdate : function (selector, modifier, options) // act on an update
+    onCheckUpdatedDoc : function (document) // act on updated docs, return false = revert
+    onRemove : function (id) // act on a remove
+    onError  : function (errors) // act when there were errors when checking a document
 }
 ```
